@@ -58,7 +58,7 @@ document.querySelector('[data-search-form]').addEventListener('submit', (event) 
   let target = '#stories';
   if (/wedding|family|couple|portfolio|gallery/.test(query)) target = '#work';
   if (/price|service|package/.test(query)) target = '#services';
-  if (/about|mara|photographer/.test(query)) target = '#about';
+  if (/about|kseniia|photographer/.test(query)) target = '#about';
   if (/contact|book|inquir/.test(query)) target = '#contact';
   closeSearch();
   document.querySelector(target).scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
@@ -94,7 +94,7 @@ inquiryForm.addEventListener('submit', (event) => {
     data.get('message')
   ].join('\n'));
   inquiryForm.querySelector('.form-status').textContent = `Thanks, ${firstName}. Opening your email app to finish sending…`;
-  window.location.href = `mailto:hello@maranoel.ca?subject=${subject}&body=${body}`;
+  window.location.href = `mailto:hello@kseniiasavchuk.ca?subject=${subject}&body=${body}`;
 });
 
 const newsletterForm = document.querySelector('[data-newsletter-form]');

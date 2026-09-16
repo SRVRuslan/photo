@@ -322,6 +322,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 38px 25px; }
   .footer-grid > div:first-child { grid-column: 1 / -1; }
   .footer-grid > div:nth-child(2), .footer-grid > div:nth-child(3) { align-items: center; text-align: center; }
+  .footer-grid > div:nth-child(2) h2, .footer-grid > div:nth-child(3) h2 { margin-bottom: 18px; font-size: .78rem; }
+  .footer-grid > div:nth-child(2) a, .footer-grid > div:nth-child(3) a { margin-bottom: 8px; font-size: .82rem; line-height: 1.55; }
   .footer-grid > div:last-child { grid-column: 1 / -1; align-items: center; text-align: center; }
   .footer-bottom { flex-direction: column; align-items: center; gap: 8px; text-align: center; }
 }

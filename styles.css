@@ -321,6 +321,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .newsletter button { width: 120px; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 38px 25px; }
   .footer-grid > div:first-child { grid-column: 1 / -1; }
+  .footer-grid > div:nth-child(2), .footer-grid > div:nth-child(3) { align-items: center; text-align: center; }
   .footer-grid > div:last-child { grid-column: 1 / -1; align-items: center; text-align: center; }
   .footer-bottom { flex-direction: column; align-items: center; gap: 8px; text-align: center; }
 }

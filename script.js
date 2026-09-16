@@ -7,16 +7,26 @@ const searchButton = document.querySelector('[data-search-toggle]');
 const searchPanel = document.querySelector('[data-search-panel]');
 const searchInput = document.querySelector('[data-search-input]');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let menuCloseTimer;
 
 const setHeaderState = () => header.classList.toggle('is-scrolled', window.scrollY > 12);
 setHeaderState();
 window.addEventListener('scroll', setHeaderState, { passive: true });
 
-function closeMenu() {
+function closeMenu({ immediate = false } = {}) {
+  clearTimeout(menuCloseTimer);
   menuButton.setAttribute('aria-expanded', 'false');
   menuButton.querySelector('.sr-only').textContent = 'Open menu';
-  nav.classList.remove('is-open');
   document.body.classList.remove('menu-open');
+
+  if (!nav.classList.contains('is-open')) return;
+  if (immediate || reduceMotion) {
+    nav.classList.remove('is-open', 'is-closing');
+    return;
+  }
+
+  nav.classList.add('is-closing');
+  menuCloseTimer = setTimeout(() => nav.classList.remove('is-open', 'is-closing'), 200);
 }
 
 function closeSearch() {
@@ -27,23 +37,33 @@ function closeSearch() {
 
 menuButton.addEventListener('click', () => {
   const open = menuButton.getAttribute('aria-expanded') !== 'true';
+  if (!open) {
+    closeMenu();
+    return;
+  }
   closeSearch();
+  clearTimeout(menuCloseTimer);
+  nav.classList.remove('is-closing');
   menuButton.setAttribute('aria-expanded', String(open));
   menuButton.querySelector('.sr-only').textContent = open ? 'Close menu' : 'Open menu';
-  nav.classList.toggle('is-open', open);
-  document.body.classList.toggle('menu-open', open);
+  nav.classList.add('is-open');
+  document.body.classList.add('menu-open');
 });
 
 searchButton.addEventListener('click', () => {
   const open = searchButton.getAttribute('aria-expanded') !== 'true';
-  closeMenu();
+  closeMenu({ immediate: true });
   searchButton.setAttribute('aria-expanded', String(open));
   searchButton.setAttribute('aria-label', open ? 'Close search' : 'Open search');
   searchPanel.classList.toggle('is-open', open);
   if (open) setTimeout(() => searchInput.focus(), 180);
 });
 
-nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => closeMenu()));
+
+document.addEventListener('pointerdown', (event) => {
+  if (nav.classList.contains('is-open') && !nav.contains(event.target) && !menuButton.contains(event.target)) closeMenu();
+});
 
 window.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') {

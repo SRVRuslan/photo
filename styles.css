@@ -189,7 +189,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .instagram-images img:nth-child(2) { object-position: 62% center; }
 .instagram-images img:nth-child(4) { object-position: 40% center; }
 
-.contact-section { padding-block: clamp(75px, 8vw, 115px); background: linear-gradient(180deg, var(--yellow) 0%, #d8b957 42%, #c4a54b 57%, #a6893b 70%, #806b33 81%, #51472b 90%, #2b2a20 96%, var(--ink) 100%); }
+.contact-section { padding-block: clamp(75px, 8vw, 115px); background: var(--yellow); }
 .contact-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(60px, 9vw, 150px); }
 .contact-copy h2 { max-width: 580px; margin: 0 0 25px; font-family: var(--heading); font-size: clamp(3rem, 5.6vw, 5.8rem); line-height: 1; text-transform: uppercase; }
 .contact-copy > p:not(.kicker) { max-width: 500px; }
